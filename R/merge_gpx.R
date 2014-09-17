@@ -7,7 +7,7 @@ lapply(kpacks, require, character.only=T)
 remove(kpacks, new.packs)
 
 #' Construir a lista de bases de dados DB do Birdmonitor ---------------------------
-gpxfolder <- 'S:/Bissau/florestas_bijagos/Dados_Campo/gpx'
+gpxfolder <- '../gpx'
 
 lgpx <- data.frame('filename' = list.files(file.path(gpxfolder), pattern = '.gpx',
                                            recursive = T),
@@ -34,12 +34,12 @@ for(i in 1:nrow(lgpx)){
 if(length(gpxp) > 0){
   gpxp <- gpxp[!sapply(gpxp, is.null)]
   gpxall_p <- do.call('rbind', gpxp)
-  writeOGR(gpxall_p, gpxfolder, "bijagos_gpxall_p", driver="ESRI Shapefile")
+  writeOGR(gpxall_p, gpxfolder, "shape_p", driver="ESRI Shapefile")
 }
 if(length(gpxl) > 0){
   gpxl <- gpxl[!sapply(gpxl, is.null)]
   gpxall_l <- do.call('rbind', gpxl)
-  writeOGR(gpxall_l, gpxfolder, "bijagos_gpxall_l", driver="ESRI Shapefile")
+  writeOGR(gpxall_l, gpxfolder, "shape_l", driver="ESRI Shapefile")
 }
 
 #' Check for duplicated lines  
